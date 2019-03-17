@@ -1,4 +1,6 @@
 class TasksController < ApplicationController
+  before_action :require_task_logged_in, only: [:index, :show, :new, :create, :edit, :update, :destroy]
+  
   def index
     @tasks = Task.all.page(params[:page])
   end
