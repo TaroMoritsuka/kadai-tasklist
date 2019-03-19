@@ -1,5 +1,7 @@
 class ToppagesController < ApplicationController
   def index
-    @tasks = current_user.tasks.page(params[:page])
+    if logged_in?
+      @tasks = current_user.tasks.order('created_at DESC').page(params[:page])
+    end
   end
 end
